@@ -3,17 +3,23 @@
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "^10.16.2",
+    "npm": "^6.9.0"
+  },
   "scripts": {
     "test": "jest",
     "dev": "webpack --mode development --watch",
     "build": "webpack --mode production",
-    "start": "NODE_ENV=production node ./dist/server.js"
+    "start": "NODE_ENV=production node ./server.js"
   },
   "author": "slighter12",
   "license": "MIT",
   "dependencies": {
     "compression": "^1.7.4",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongodb": "^3.3.2",
+    "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
