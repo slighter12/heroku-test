@@ -3,7 +3,7 @@ const MongoClient = require('mongodb').MongoClient,
 
 async function upsertDb(key, data, dbName) {
     let client;
-    let url = `${dburi}/'${dbname}'`;
+    let url = `${dburi}/'${dbName}'`;
     try {
         client = await MongoClient.connect(url,{ useNewUrlParser: true, useUnifiedTopology: true });
         const db = client.db();
@@ -22,3 +22,4 @@ async function upsertDb(key, data, dbName) {
         await client.close();
     }
 }
+
