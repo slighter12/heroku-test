@@ -1,3 +1,6 @@
 import './app.sass';
+import 'whatwg-fetch';
 
-console.log("Hello World.");
+const serverAddress = location.href;
+
+console.log(`Hello World in ${serverAddress}.`);
