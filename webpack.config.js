@@ -3,52 +3,38 @@ const nodeExternals = require('webpack-node-externals');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const serverConfig = {
-    entry: {
-        server: './server.js'
-    },
-    output: {
-        path: path.join(__dirname, 'dist'),
-        filename: '[name].js'
-    },
-    target: 'node',
-    node: {
-        __dirname: false,
-        __filename: false
-    },
-    module: {
-        rules: [
-        {
-            test: /.js$/,
-            exclude: /node_modules/,
-            loader: 'babel-loader',
-            options: {
-                presets: ['@babel/preset-env']
-            },
-        }]
-    },
-};
-
 const clientConfig = {
+    mode: 'development',
     entry: {
         index: './src/index.js'
     },
     output: {
         path: path.join(__dirname, 'dist'),
-        filename: '[name].js'
+        filename: '[name].bundle.js'
     },
     target: 'web',
-    externals: 'nodeExternals',
+    devServer: {
+        contentBase: './dist'
+    },
     module: {
         rules: [
         {
             test: /\.js$/,
             exclude: /node_module/,
             loader: 'babel-loader',
+            options: {
+                presets: ['@babel/preset-env']
+            },
         },
         {
             test: /\.pug$/,
-            use: [ 'html-loader', 'pug-html-loader' ],
+            use: [ 'html-loader',
+                {
+                    loader: 'pug-html-loader',
+                    options: {
+                        pretty: true
+                    }
+                }],
         },
         {
             test: /\.(scss|sass)$/,
@@ -67,4 +53,4 @@ const clientConfig = {
     ]
 };
 
-module.exports = [ serverConfig, clientConfig ];
+module.exports = [ clientConfig ];
